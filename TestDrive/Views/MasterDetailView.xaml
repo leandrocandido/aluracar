@@ -6,12 +6,14 @@
     x:Class="TestDrive.Views.MasterDetailView">
     <MasterDetailPage.Master>
         <!--perfi do usuario -->
-        <ContentPage Title = "Perfil">
-            <Label Text = "Este é o perfil do usuario"></Label>
-        </ContentPage>
+        <view:MasterView></view:MasterView>
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
         <!--listagem de veiculos (pagina de navegacao) -->
-        <view:ListagemView></view:ListagemView>
+        <NavigationPage>
+            <x:Arguments>
+                <view:ListagemView></view:ListagemView>
+            </x:Arguments>
+        </NavigationPage>
     </MasterDetailPage.Detail>
 </MasterDetailPage>
