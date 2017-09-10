@@ -25,22 +25,34 @@ namespace TestDrive
 		{
             //joao@alura.com.br
             //alura123
-			using (var client = new HttpClient())
-			{
-				var camposFormulario = new FormUrlEncodedContent(new[]
-				{
+		    using (var client = new HttpClient())
+            {
+                var camposFormulario = new FormUrlEncodedContent(new[]
+                {
                     new KeyValuePair<string,string>("email",login.Email),
                     new KeyValuePair<string,string>("senha",login.Senha)
-					});
-				client.BaseAddress = new Uri("https://aluracar.herokuapp.com/login");
+                });
 
-				var resultado = await client.PostAsync("/login", camposFormulario);
+                client.BaseAddress = new Uri("https://aluracar.herokuapp.com/login");
 
-                if(resultado.IsSuccessStatusCode)
-				    MessagingCenter.Send<Usuario>(new Usuario(), "SucessoLogin");
+                HttpResponseMessage resultado = null;
+                    
+                try
+                {
+                    resultado = await client.PostAsync("/login", camposFormulario);
+                }
+                catch
+                {
+				    MessagingCenter.Send<LoginException>(new LoginException(@"Ocorreu um erro de comunicacao com o servidor.
+                                                                            por favor verifique sua conexao e tente mais tarde."), "FalhaLogin");
+					throw;
+                }
+
+                if (resultado.IsSuccessStatusCode)
+                    MessagingCenter.Send<Usuario>(new Usuario(), "SucessoLogin");
                 else
                     MessagingCenter.Send<LoginException>(new LoginException("usuario ou senha incorretos!"), "FalhaLogin");
-			}
+                }
 		}
     }
 }
