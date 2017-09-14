@@ -4,10 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:view = "clr-namespace:TestDrive.Views"
     x:Class="TestDrive.Views.MasterDetailView">
-    <MasterDetailPage.Master>
-        <!--perfi do usuario -->
-        <view:MasterView></view:MasterView>
-    </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
         <!--listagem de veiculos (pagina de navegacao) -->
         <NavigationPage>

@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage 
+<TabbedPage 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     x:Class="TestDrive.Views.MasterView"
     Title = "Perfil">
-    <StackLayout VerticalOptions = "Center" HorizontalOptions = "Center" >
-        <Label Text = "João da silva" ></Label>
-        <Label Text = "joao@alura.com.br"></Label>
-    </StackLayout>
-</ContentPage>
+
+    <TabbedPage.Children>
+        <ContentPage Title = "Usuário" >
+            <Frame OutlineColor ="Silver"
+                    Margin = "15"
+                    VerticalOptions = "CenterAndExpand" >
+                <StackLayout VerticalOptions = "Center" HorizontalOptions = "Center" >
+                    <Label Text = "{Binding Nome}" ></Label>
+                    <BoxView HeightRequest = "1" HorizontalOptions = "Fill" Color = "Gray" ></BoxView>
+                    <Label Text = "{Binding Email}"></Label>
+                    <BoxView HeightRequest = "1" HorizontalOptions = "Fill" Color = "Gray" ></BoxView>
+                    <Button Text ="Perfil"></Button>
+                </StackLayout>
+            </Frame>
+        </ContentPage>
+
+        <ContentPage Title = "Editar">
+        </ContentPage>
+    </TabbedPage.Children>
+
+</TabbedPage>
