@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     x:Class="TestDrive.Views.MasterView"
     Title = "Perfil">
-
     <TabbedPage.Children>
         <ContentPage Title = "Usuário" >
             <Frame OutlineColor ="Silver"
@@ -15,7 +14,7 @@
                     <BoxView HeightRequest = "1" HorizontalOptions = "Fill" Color = "Gray" ></BoxView>
                     <Label Text = "{Binding Email}"></Label>
                     <BoxView HeightRequest = "1" HorizontalOptions = "Fill" Color = "Gray" ></BoxView>
-                    <Button Text ="Perfil"></Button>
+                    <Button Command = "{Binding EditarPerfilCommand}" Text ="Perfil"></Button>
                 </StackLayout>
             </Frame>
         </ContentPage>
