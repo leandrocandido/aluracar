@@ -3,7 +3,13 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     x:Class="TestDrive.Views.MasterView"
+    xmlns:converters = "clr-namespace:TestDrive.Converters"
     Title = "Perfil">
+    <TabbedPage.Resources>
+        <ResourceDictionary>
+            <converters:NegativoConverter x:Key = "negativo" ></converters:NegativoConverter>
+        </ResourceDictionary>
+    </TabbedPage.Resources>
     <TabbedPage.Children>
         <ContentPage Title = "Usuário" >
             <Frame OutlineColor ="Silver"
@@ -18,8 +24,25 @@
                 </StackLayout>
             </Frame>
         </ContentPage>
-
+           
         <ContentPage Title = "Editar">
+            <Frame OutlineColor ="Silver" Margin = "15" VerticalOptions = "CenterAndExpand" >
+                <StackLayout VerticalOptions = "Center" HorizontalOptions = "Center" >
+                    <TableView>
+                        <TableView.Root>
+                            <TableSection Title = "Dados Pesssoais">
+                                <EntryCell IsEnabled = "{Binding Editando}" Placeholder = "Nome" Text = "{Binding Nome}" ></EntryCell>
+                                <EntryCell IsEnabled = "{Binding Editando}" Placeholder = "Data de Nascimento" Text = "{Binding DataNascimento}" ></EntryCell>
+                                <EntryCell IsEnabled = "{Binding Editando}" Placeholder = "Telefone" Text = "{Binding Telefone}" ></EntryCell>
+                                <EntryCell IsEnabled = "{Binding Editando}" Placeholder = "Email" Text = "{Binding Email}" ></EntryCell>
+                            </TableSection>
+                        </TableView.Root>
+                    </TableView>                 
+                    <Button Text = "Salvar" Command = "{Binding SalvarCommand}" IsVisible = "{Binding Editando}" ></Button>
+                    <Button Text = "Editar" Command = "{Binding EditarCommand}" IsVisible = "{Binding Editando, Converter={ StaticResource Key=negativo }}" ></Button>
+
+                </StackLayout>
+            </Frame>
         </ContentPage>
     </TabbedPage.Children>
 
